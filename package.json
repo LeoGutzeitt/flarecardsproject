@@ -1,0 +1,18 @@
+{
+  "name": "flare-cards",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Base da loja Flare Cards",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/server.mjs",
+    "start": "node scripts/server.mjs",
+    "build": "node scripts/build.mjs",
+    "check": "node --check ticket-preview.js && node --check ticket-models.js && node --check supabase/functions/_shared/ticket-template.mjs && node --check supabase/functions/_shared/render-ticket.ts && node --check auction-winners.js && node --check card-languages.js && node --check flareadmin.js && node --check platform-store.js && node --check catalog-seed.js && node --check card-details.js && node --check card-inventory.js && node --check marketplace.js && node --check footer.js && node --check store-contacts.js && node --check header.js && node --check store-catalog.js && node --check app.js && node --check auth.js && node --check auctions.js && node --check auction-store.js && node --check auction-backend.js && node --check auction-categories.js && node --check pokemon-collections.js && node --check auction-examples.js && node --check public-config.js && node --check scroll-reveal.js && node --check page-transition.js && node --check scripts/server.mjs && node --check scripts/build.mjs && node --check supabase/functions/process-auctions/index.ts",
+    "test": "node --test scripts/auction-store.test.mjs scripts/auth.test.mjs scripts/supabase.test.mjs scripts/winner-email.test.mjs scripts/admin.test.mjs scripts/auction-winners.test.mjs scripts/ticket-template.test.mjs"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.11",
+    "@resvg/resvg-wasm": "^2.6.2"
+  }
+}

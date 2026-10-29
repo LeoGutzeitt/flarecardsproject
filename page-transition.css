@@ -1,0 +1,38 @@
+/* A Pokébola gira, dá exatamente dois quiques e se abre para revelar a página. */
+.page-loader { display: none; position: fixed; inset: 0; z-index: 10000; place-content: center; justify-items: center; gap: 36px; background: radial-gradient(ellipse at 50% 40%,#64142d,#0b090c 65%); color: #f5f3ef; }
+.page-loading .page-loader, .page-leaving .page-loader { display: grid!important; }
+.page-loading, .page-leaving { overflow: hidden; }
+.page-loader>p { text-align: center; font: 13px Arial,sans-serif; letter-spacing: .4px; margin: 0; padding: 0 22px; }
+.page-loader>p>span { display: block; margin-top: 12px; color: #ff95b1; font-size: 9px; letter-spacing: 4px; }
+.loader-scene { position: relative; width: 180px; height: 200px; display: grid; place-items: center; }
+.loader-bounce { position: relative; width: 112px; height: 112px; z-index: 1; }
+.loader-spin { position: relative; width: 100%; height: 100%; filter: drop-shadow(0 9px 12px #0007); }
+.pokeball-top, .pokeball-bottom { position: absolute; width: 112px; height: 56px; box-sizing: border-box; border: 5px solid #17171c; }
+.pokeball-top { top: 0; border-radius: 112px 112px 0 0; background: radial-gradient(circle at 30% 30%,#ff7c8a,#f22543 50%,#a90b28); border-bottom-width: 4px; transform-origin: 90% 100%; }
+.pokeball-bottom { bottom: 0; border-radius: 0 0 112px 112px; background: linear-gradient(135deg,#fff,#eeedf0 60%,#a9a7b1); border-top-width: 4px; transform-origin: 90% 0; }
+.pokeball-button { position: absolute; left: 38px; top: 38px; width: 36px; height: 36px; box-sizing: border-box; background: #f4f3f5; border: 6px solid #17171c; border-radius: 50%; box-shadow: inset 0 0 0 3px #b4b1bc; z-index: 2; }
+.pokeball-flash { position: absolute; inset: 33px; background: white; border-radius: 50%; opacity: 0; box-shadow: 0 0 30px 12px #ffffff77; pointer-events: none; }
+.pokeball-shadow { position: absolute; bottom: 24px; width: 96px; height: 12px; border-radius: 50%; background: #0008; filter: blur(4px); }
+.loader-running .loader-spin { animation: ball-spin .55s cubic-bezier(.3,.1,.3,1) both; }
+.loader-running .loader-bounce { animation: ball-two-bounces .8s .55s both; }
+.loader-running .pokeball-shadow { animation: ball-shadow .8s .55s both; }
+.loader-running .pokeball-top { animation: ball-open-top .5s 1.4s forwards; }
+.loader-running .pokeball-bottom { animation: ball-open-bottom .5s 1.4s forwards; }
+.loader-running .pokeball-button { animation: ball-button-open .4s 1.4s forwards; }
+.loader-running .pokeball-flash { animation: ball-flash .5s 1.4s forwards; }
+.loader-running .page-loader { animation: page-reveal .35s 1.7s forwards; }
+.loader-running main { animation: page-emerge .5s 1.55s both; }
+.loader-running .pokeball-shadow, .loader-running .page-loader>p { transition: opacity .25s 1.4s; }
+@keyframes ball-spin { from { transform: rotate(-720deg) scale(.65); } to { transform: rotate(0) scale(1); } }
+@keyframes ball-two-bounces { 0%,50%,100% { transform: translateY(0); animation-timing-function: ease-out; } 24% { transform: translateY(-52px); animation-timing-function: ease-in; } 74% { transform: translateY(-28px); animation-timing-function: ease-in; } 48%,98% { transform: translateY(3px) scale(1.07,.93); } }
+@keyframes ball-shadow { 0%,50%,100% { transform: scale(1); opacity: 1; } 24% { transform: scale(.55); opacity: .35; } 74% { transform: scale(.75); opacity: .6; } }
+@keyframes ball-open-top { to { transform: translateY(-65px) rotate(-22deg); opacity: 0; } }
+@keyframes ball-open-bottom { to { transform: translateY(65px) rotate(16deg); opacity: 0; } }
+@keyframes ball-button-open { to { transform: scale(.3); opacity: 0; } }
+@keyframes ball-flash { 0% { opacity: 0; transform: scale(.4); } 35% { opacity: .8; } 100% { opacity: 0; transform: scale(8); } }
+@keyframes page-reveal { to { opacity: 0; visibility: hidden; } }
+@keyframes page-emerge { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+@media(prefers-reduced-motion:reduce) { .page-loader *, .loader-running .page-loader, .loader-running main { animation: none!important; transition: none!important; } .page-loader { background: #0b090c; } }
+@media print { .page-loader { display: none!important; } }
+
+

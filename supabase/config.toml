@@ -1,0 +1,3 @@
+[functions.process-auctions]
+# A função verifica o usuário/admin ou o segredo exclusivo do agendador.
+verify_jwt = false
